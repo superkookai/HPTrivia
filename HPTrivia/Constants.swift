@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 enum Constants{
     static let hpFont = "PartyLetPlain"
@@ -29,3 +30,4 @@ extension Button{
             .tint(.brown)
     }
 }
+

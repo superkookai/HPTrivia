@@ -9,6 +9,7 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
+    @EnvironmentObject private var store: Store
     @State private var audioPlayer: AVAudioPlayer!
     @State private var scalePlayButton = false
     @State private var moveBackgroundImage = false
@@ -105,6 +106,7 @@ struct ContentView: View {
                                 Button {
                                     //Start New Game
                                     playGame.toggle()
+                                    stopAudio()
                                 } label: {
                                     Text("Play")
                                         .font(.largeTitle)
@@ -145,6 +147,7 @@ struct ContentView: View {
                                 .transition(.offset(x: geo.size.width/4))
                                 .sheet(isPresented: $showSettings) {
                                     SettingsView()
+                                        .environmentObject(store)
                                 }
                             }
                         }
@@ -174,8 +177,13 @@ struct ContentView: View {
         audioPlayer.numberOfLoops = -1
         audioPlayer.play()
     }
+    
+    private func stopAudio(){
+        audioPlayer.pause()
+    }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(Store())
 }
