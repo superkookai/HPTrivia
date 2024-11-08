@@ -28,7 +28,9 @@ class Store: ObservableObject{
     
     func loadProducts() async{
         do{
-            products = try await Product.products(for: productIDs)
+            products = try await Product.products(for: productIDs).sorted(by: { p1, p2 in
+                p1.displayName < p2.displayName
+            })
         }catch{
             print("Could not fetch those products: \(error.localizedDescription)")
         }

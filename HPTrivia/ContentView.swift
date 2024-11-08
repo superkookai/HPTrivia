@@ -106,7 +106,7 @@ struct ContentView: View {
                                 Button {
                                     //Start New Game
                                     playGame.toggle()
-                                    stopAudio()
+//                                    stopAudio()
                                 } label: {
                                     Text("Play")
                                         .font(.largeTitle)
