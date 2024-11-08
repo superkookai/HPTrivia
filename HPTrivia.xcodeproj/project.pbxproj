@@ -24,6 +24,8 @@
 		BF66634F2CDB09D0009BFA5C /* deep-in-the-dell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF6663422CDB09D0009BFA5C /* deep-in-the-dell.mp3 */; };
 		BF6663502CDB09D0009BFA5C /* magic-wand.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF6663462CDB09D0009BFA5C /* magic-wand.mp3 */; };
 		BF6663512CDB09D0009BFA5C /* page-flip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF6663482CDB09D0009BFA5C /* page-flip.mp3 */; };
+		BF69FD3B2CDDE4360002AEAC /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69FD3A2CDDE4360002AEAC /* Question.swift */; };
+		BF69FD3D2CDDEAC20002AEAC /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69FD3C2CDDEAC20002AEAC /* Game.swift */; };
 		BFB9C56F2CDC829B00B421FC /* HPConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = BFB9C56E2CDC829B00B421FC /* HPConfig.storekit */; };
 		BFB9C5712CDC861500B421FC /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB9C5702CDC861500B421FC /* Store.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 		BF6663472CDB09D0009BFA5C /* negative-beeps.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "negative-beeps.mp3"; sourceTree = "<group>"; };
 		BF6663482CDB09D0009BFA5C /* page-flip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "page-flip.mp3"; sourceTree = "<group>"; };
 		BF6663492CDB09D0009BFA5C /* spellcraft.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spellcraft.mp3; sourceTree = "<group>"; };
+		BF69FD3A2CDDE4360002AEAC /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		BF69FD3C2CDDEAC20002AEAC /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		BFB9C56E2CDC829B00B421FC /* HPConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = HPConfig.storekit; sourceTree = "<group>"; };
 		BFB9C5702CDC861500B421FC /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,7 +99,9 @@
 				BF63F71D2CDB48030056DCD3 /* GamePlayView.swift */,
 				BF66633A2CDB08DE009BFA5C /* HPTriviaApp.swift */,
 				BF63F7172CDB0F210056DCD3 /* Constants.swift */,
+				BF69FD3A2CDDE4360002AEAC /* Question.swift */,
 				BFB9C5702CDC861500B421FC /* Store.swift */,
+				BF69FD3C2CDDEAC20002AEAC /* Game.swift */,
 				BFB9C56E2CDC829B00B421FC /* HPConfig.storekit */,
 				BF6663382CDB08DE009BFA5C /* Assets.xcassets */,
 				BF6663402CDB09BC009BFA5C /* trivia.json */,
@@ -195,7 +201,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF69FD3D2CDDEAC20002AEAC /* Game.swift in Sources */,
 				BFB9C5712CDC861500B421FC /* Store.swift in Sources */,
+				BF69FD3B2CDDE4360002AEAC /* Question.swift in Sources */,
 				BF63F71C2CDB3EC10056DCD3 /* SettingsView.swift in Sources */,
 				BF66633E2CDB08DE009BFA5C /* ContentView.swift in Sources */,
 				BF63F71A2CDB36C70056DCD3 /* InstructionsView.swift in Sources */,

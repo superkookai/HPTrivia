@@ -10,6 +10,7 @@ import AVKit
 
 struct ContentView: View {
     @EnvironmentObject private var store: Store
+    @EnvironmentObject private var game: Game
     @State private var audioPlayer: AVAudioPlayer!
     @State private var scalePlayButton = false
     @State private var moveBackgroundImage = false
@@ -60,10 +61,9 @@ struct ContentView: View {
                             VStack{
                                 Text("Recent Scores")
                                     .font(.title2)
-                                
-                                Text("33")
-                                Text("27")
-                                Text("15")
+                                ForEach(game.recentScores, id: \.self){ score in
+                                    Text("\(score)")
+                                }
                             }
                             .font(.title3)
                             .padding(.horizontal)
@@ -105,15 +105,16 @@ struct ContentView: View {
                             if animateViewsIn {
                                 Button {
                                     //Start New Game
+                                    filterQuestions()
+                                    game.startGame()
                                     playGame.toggle()
-//                                    stopAudio()
                                 } label: {
-                                    Text("Play")
+                                    Text(store.books.contains(.active) ? "Play" : "No Book")
                                         .font(.largeTitle)
                                         .foregroundStyle(.white)
                                         .padding(.vertical,7)
                                         .padding(.horizontal,50)
-                                        .background(.brown)
+                                        .background(store.books.contains(.active) ? .brown : .gray)
                                         .clipShape(.rect(cornerRadius: 7))
                                         .shadow(radius: 5)
                                 }
@@ -126,7 +127,15 @@ struct ContentView: View {
                                 .transition(.offset(y: geo.size.height/3))
                                 .fullScreenCover(isPresented: $playGame) {
                                     GamePlayView()
+                                        .environmentObject(game)
+                                        .onAppear {
+                                            audioPlayer.setVolume(0, fadeDuration: 2)
+                                        }
+                                        .onDisappear {
+                                            audioPlayer.setVolume(1, fadeDuration: 3)
+                                        }
                                 }
+                                .disabled(store.books.contains(.active) ? false : true)
                             }
                         }
                         .animation(.easeOut(duration: 0.7).delay(2), value: animateViewsIn)
@@ -158,6 +167,18 @@ struct ContentView: View {
                     }
                     .frame(width: geo.size.width)
                     
+                    VStack{
+                        if animateViewsIn{
+                            if store.books.contains(.active) == false{
+                                Text("No questions available, go to settings.⬆️")
+                                    .multilineTextAlignment(.center)
+                                    .foregroundStyle(.white)
+                                    .transition(.opacity)
+                            }
+                        }
+                    }
+                    .animation(.easeInOut.delay(3), value: animateViewsIn)
+                    
                     Spacer()
                 }
                 
@@ -167,7 +188,7 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             animateViewsIn = true
-//            playAudio()
+            playAudio()
         }
     }
     
@@ -178,12 +199,19 @@ struct ContentView: View {
         audioPlayer.play()
     }
     
-    private func stopAudio(){
-        audioPlayer.pause()
+    private func filterQuestions(){
+        var books: [Int] = []
+        for (index,status) in store.books.enumerated(){
+            if status == .active{
+                books.append(index+1)
+            }
+        }
+        game.filterQuestions(to: books)
     }
 }
 
 #Preview {
     ContentView()
         .environmentObject(Store())
+        .environmentObject(Game())
 }

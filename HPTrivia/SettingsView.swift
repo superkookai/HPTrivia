@@ -41,9 +41,11 @@ struct SettingsView: View {
                                 }
                                 .task{
                                     store.books[i] = .active
+                                    store.saveStatus()
                                 }
                                 .onTapGesture {
                                     store.books[i] = .inactive
+                                    store.saveStatus()
                                 }
                             }else if store.books[i] == .inactive{
                                 ZStack(alignment: .bottomTrailing) {
@@ -65,6 +67,7 @@ struct SettingsView: View {
                                 }
                                 .onTapGesture {
                                     store.books[i] = .active
+                                    store.saveStatus()
                                 }
                             } else {
                                 ZStack{
@@ -99,6 +102,7 @@ struct SettingsView: View {
                 }
                 .doneButton()
             }
+            .foregroundStyle(.black)
         }
     }
 }
